@@ -1,0 +1,10 @@
+pl\mineOres\managers\OresManager.class
+pl\mineOres\utils\RandomUtil.class
+pl\mineOres\Main.class
+pl\mineOres\utils\GameUtil$ValidationType.class
+pl\mineOres\configs\Config.class
+pl\mineOres\Logger.class
+pl\mineOres\listeners\PlayerBreakListener.class
+pl\mineOres\utils\GameUtil$LogType.class
+pl\mineOres\utils\GameUtil.class
+pl\mineOres\utils\Util.class
