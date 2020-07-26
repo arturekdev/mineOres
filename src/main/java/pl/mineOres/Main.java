@@ -1,5 +1,6 @@
 package pl.mineOres;
 
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.mineOres.configs.Config;
@@ -19,6 +20,12 @@ public class Main extends JavaPlugin {
 		if (!new GameUtil(Config.name, this).register()) {
 			return;
 		}
+
+		int pluginId = 8316; // <-- Replace with the id of your plugin!
+		Metrics metrics = new Metrics(this, pluginId);
+
+		// Optional: Add custom charts
+		metrics.addCustomChart(new Metrics.SimplePie("chart_id", () -> "My value"));
 		
 		Logger.log("----------------------------------");
 		Logger.log("         mineOres");
