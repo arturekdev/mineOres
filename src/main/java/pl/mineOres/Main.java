@@ -25,7 +25,7 @@ public class Main extends JavaPlugin {
 		Metrics metrics = new Metrics(this, pluginId);
 
 		// Optional: Add custom charts
-		metrics.addCustomChart(new Metrics.SimplePie("chart_id", () -> "My value"));
+		metrics.addCustomChart(new Metrics.SimplePie("chart_id", () -> "My value a"));
 		
 		Logger.log("----------------------------------");
 		Logger.log("         mineOres");
