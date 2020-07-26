@@ -1,0 +1,2 @@
+# mineOres
+regenerate ores
