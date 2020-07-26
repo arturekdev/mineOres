@@ -13,7 +13,7 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     private void event(PlayerJoinEvent e) {
         Player p = e.getPlayer();
-        Updater spu = new Updater(Main.getInst(), "https://arturek.site/plugins/mineOres/mineOres.html");
+        Updater spu = new Updater(Main.getInst(), "https://arturekdev.github.io/mineOres/mineOres.html");
         if (p.hasPermission("mineOres.admin") && spu.needsUpdate()) {
             p.sendMessage(Util.fix(" &6&lmineOres &8>> &7Plugin has new version! Download now!"));
         }
