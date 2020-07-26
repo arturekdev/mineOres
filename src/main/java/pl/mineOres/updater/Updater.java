@@ -64,18 +64,32 @@ public class Updater {
             this.downloadURL = children.item(3).getTextContent();
             this.changeLog = children.item(5).getTextContent();
             if (newVersionAvailiable(this.plugin.getDescription().getVersion(), this.version.replaceAll("[a-zA-z ]", ""))) {
-                if (this.out) {
-                    System.out.println(" Dostępna jest nowa wersja pluginu: " + this.version.replaceAll("[a-zA-z ]", ""));
-                    System.out.println(" Nazwa pliku: " + this.downloadURL);
-                    System.out.println(" aszły następujące zmiany: " + this.changeLog);
-                }
                 return true;
             }
         } catch (IOException | org.xml.sax.SAXException | javax.xml.parsers.ParserConfigurationException e) {
-            System.out.println(" Błąd sprawdzania aktualizacji dla: " + this.plugin.getDescription().getName());
-            System.out.println(" Błąd: " + e);
+            System.out.println(" Error for check new version: " + this.plugin.getDescription().getName());
+            System.out.println(" Error: " + e);
         }
         return false;
+    }
+
+    public String getNewVersion() {
+        if (this.canceled)
+            return "";
+        try {
+            URLConnection con = this.url.openConnection();
+            InputStream _in = con.getInputStream();
+            Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(_in);
+            Node nod = doc.getElementsByTagName("item").item(0);
+            NodeList children = nod.getChildNodes();
+            this.version = children.item(1).getTextContent();
+
+            return this.version.replaceAll("[a-zA-z ]", "");
+        } catch (IOException | org.xml.sax.SAXException | javax.xml.parsers.ParserConfigurationException e) {
+            System.out.println(" Error for check new version: " + this.plugin.getDescription().getName());
+            System.out.println(" Error: " + e);
+        }
+        return "";
     }
 
     public boolean newVersionAvailiable(String oldv, String newv) {

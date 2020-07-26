@@ -15,7 +15,7 @@ public class PlayerJoinListener implements Listener {
         Player p = e.getPlayer();
         Updater spu = new Updater(Main.getInst(), "https://arturekdev.github.io/mineOres/mineOres.html");
         if (p.hasPermission("mineOres.admin") && spu.needsUpdate()) {
-            p.sendMessage(Util.fix(" &6&lmineOres &8>> &7Plugin has new version! Download now!"));
+            p.sendMessage(Util.fix(" &6&lmineOres &8>> &7Plugin has new version! &e&l" + spu.getNewVersion() + " &7Download now!"));
         }
     }
 }
