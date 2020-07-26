@@ -1,2 +1,2 @@
-# mineOres - Natural regeneration of ores during their extraction.
-regenerate ores
+# mineOres 
+Natural regeneration of ores during their extraction.
