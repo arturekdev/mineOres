@@ -29,3 +29,18 @@ ores:
     max: 30
     min: 2
     amount: 10
+  quartz:
+    toggle: true
+    max: 20
+    min: 2
+    amount: 10
+  nethergold:
+    toggle: true
+    max: 117
+    min: 10
+    amount: 10
+  ancientdebris:
+    toggle: true
+    max: 119
+    min: 8
+    amount: 2

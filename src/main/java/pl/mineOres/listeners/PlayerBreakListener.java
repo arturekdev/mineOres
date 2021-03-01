@@ -1,6 +1,8 @@
 package pl.mineOres.listeners;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -53,6 +55,22 @@ public class PlayerBreakListener implements Listener {
 				OresManager.runSearch(Material.LAPIS_ORE, p, Config.lapis_min, Config.lapis_max, Config.lapis_amount);
 			}
 		}
+
+		if(p.getWorld().getEnvironment().equals(World.Environment.NETHER) && Bukkit.getVersion().contains("1.16")) {
+
+			if(b.getType().equals(Material.NETHER_GOLD_ORE)) {
+				OresManager.runSearch(Material.NETHER_GOLD_ORE, p, Config.nethergold_min, Config.nethergold_max, Config.nethergold_amount);
+			}
+
+			if(b.getType().equals(Material.NETHER_QUARTZ_ORE)) {
+				OresManager.runSearch(Material.NETHER_QUARTZ_ORE, p, Config.quartz__min, Config.quartz_max, Config.nethergold_amount);
+			}
+
+			if(b.getType().equals(Material.ANCIENT_DEBRIS)) {
+				OresManager.runSearch(Material.ANCIENT_DEBRIS, p, Config.ancientdebris_min, Config.ancientdebris_max, Config.ancientdebris_amount);
+			}
+		}
+
 	}
 
 }

@@ -1,11 +1,12 @@
 package pl.mineOres.managers;
 
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import pl.mineOres.utils.RandomUtil;
 
 public class OresManager {
+
+    public static World world;
 
     public static int many_coal = 0;
     public static int many_diamond = 0;
@@ -13,6 +14,9 @@ public class OresManager {
     public static int many_gold = 0;
     public static int many_iron = 0;
     public static int many_lapis = 0;
+    public static int many_nethergold = 0;
+    public static int many_quartz = 0;
+    public static int many_ancientdebris = 0;
 
     public static Location main_loc_coal;
     public static Location main_loc_diamond;
@@ -20,6 +24,10 @@ public class OresManager {
     public static Location main_loc_gold;
     public static Location main_loc_iron;
     public static Location main_loc_lapis;
+    public static Location main_loc_nethergold;
+    public static Location main_loc_quartz;
+    public static Location main_loc_ancientdebris;
+
 
     public static Location nextLocation(Material m, Location l) {
         int xbmin = l.getBlockX() - 1;
@@ -235,6 +243,78 @@ public class OresManager {
             many_lapis = -1;
 
         }
+
+            if (m.equals(Material.NETHER_GOLD_ORE)) {
+
+                if(main_loc_nethergold == null) {
+                    main_loc_nethergold = newLocation(p, ymin, ymax);
+                }
+
+                if(!main_loc_nethergold.getBlock().getType().equals(Material.NETHERRACK)) {
+                    main_loc_nethergold = newLocation(p, ymin, ymax);
+                    runSearch(m, p, ymin, ymax, amount);
+                    return;
+                }
+
+                if(many_nethergold == 0) {
+                    main_loc_nethergold = newLocation(p, ymin, ymax);
+                    many_nethergold = amount;
+                }
+
+                Location nextOreLoc = nextLocation(m, main_loc_nethergold);
+
+                if(!nextOreLoc.getBlock().getType().equals(Material.NETHERRACK)) {
+                    runSearch(m, p, ymin, ymax, amount);
+                    return;
+                }
+
+                nextOreLoc.getChunk().load();
+                nextOreLoc.getBlock().setType(m);
+                many_nethergold = -1;
+
+
+            }
+
+            if(m.equals(Material.NETHER_QUARTZ_ORE)) {
+
+                if(main_loc_quartz == null) {
+                    main_loc_quartz = newLocation(p, ymin, ymax);
+                }
+
+                if(!main_loc_quartz.getBlock().getType().equals(Material.NETHERRACK)) {
+                    main_loc_quartz = newLocation(p, ymin, ymax);
+                    runSearch(m, p, ymin, ymax, amount);
+                    return;
+                }
+                if(many_quartz == 0) {
+                    main_loc_quartz = newLocation(p, ymin, ymax);
+                    many_quartz = amount;
+                }
+
+                Location nextOreLoc = nextLocation(m, main_loc_quartz);
+
+                if(!nextOreLoc.getBlock().getType().equals(Material.NETHERRACK)) {
+                    runSearch(m, p, ymin, ymax, amount);
+                    return;
+                }
+
+                nextOreLoc.getChunk().load();
+                nextOreLoc.getBlock().setType(m);
+                many_quartz = -1;
+            }
+
+            if(m.equals(Material.ANCIENT_DEBRIS)) {
+
+                Location nextOreLoc = newLocation(p, ymin, ymax);
+
+                if(!nextOreLoc.getBlock().getType().equals(Material.NETHERRACK)) {
+                    runSearch(m, p, ymin, ymax, amount);
+                    return;
+                }
+                nextOreLoc.getChunk().load();
+                nextOreLoc.getBlock().setType(m);
+                many_ancientdebris = -1;
+            }
+        }
     }
 
-}
