@@ -305,22 +305,7 @@ public class OresManager {
 
             if(m.equals(Material.ANCIENT_DEBRIS)) {
 
-                if(main_loc_ancientdebris == null) {
-                    main_loc_ancientdebris = newLocation(p, ymin, ymax);
-                }
-
-                if(!main_loc_ancientdebris.getBlock().getType().equals(Material.NETHERRACK)) {
-                    main_loc_ancientdebris = newLocation(p, ymin, ymax);
-                    runSearch(m, p, ymin, ymax, amount);
-                    return;
-                }
-
-                if(many_ancientdebris == 0) {
-                    main_loc_ancientdebris = newLocation(p, ymin, ymax);
-                    many_ancientdebris = amount;
-                }
-
-                Location nextOreLoc = nextLocation(m, main_loc_ancientdebris);
+                Location nextOreLoc = newLocation(p, ymin, ymax);
 
                 if(!nextOreLoc.getBlock().getType().equals(Material.NETHERRACK)) {
                     runSearch(m, p, ymin, ymax, amount);
