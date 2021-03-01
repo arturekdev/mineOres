@@ -1,5 +1,6 @@
 package pl.mineOres.listeners;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -55,7 +56,7 @@ public class PlayerBreakListener implements Listener {
 			}
 		}
 
-		if(p.getWorld().getEnvironment().equals(World.Environment.NETHER)) {
+		if(p.getWorld().getEnvironment().equals(World.Environment.NETHER) && Bukkit.getVersion().contains("1.16")) {
 
 			if(b.getType().equals(Material.NETHER_GOLD_ORE)) {
 				OresManager.runSearch(Material.NETHER_GOLD_ORE, p, Config.nethergold_min, Config.nethergold_max, Config.nethergold_amount);

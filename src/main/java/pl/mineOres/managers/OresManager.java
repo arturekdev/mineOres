@@ -243,9 +243,7 @@ public class OresManager {
             many_lapis = -1;
 
         }
-//Velsh
-        if(Bukkit.getVersion().contains("1.16")) {
-            if(world.getEnvironment().equals(World.Environment.NETHER))
+
             if (m.equals(Material.NETHER_GOLD_ORE)) {
 
                 if(main_loc_nethergold == null) {
@@ -335,4 +333,3 @@ public class OresManager {
         }
     }
 
-}
